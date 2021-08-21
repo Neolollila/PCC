@@ -34,7 +34,7 @@ class Login extends Component {
                   this.state.password)
       .then(
         () => {
-          this.props.history.push('/profile');
+          this.props.history.push('/');
         },
         error => {
           console.log("Login fail: error = { " + error.toString() + " }");

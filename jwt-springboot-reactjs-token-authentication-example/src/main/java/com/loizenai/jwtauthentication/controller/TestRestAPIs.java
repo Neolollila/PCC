@@ -31,6 +31,13 @@ public class TestRestAPIs {
 		);
 	}
 
+	@GetMapping("/profile/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity <User> profileAccess(@PathVariable(value = "id") Long id) {
+
+		return ResponseEntity.ok(this.userRepository.findById(id).get());
+	}
+
 	@DeleteMapping("/user/{id}")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Void> removeUser(@PathVariable(value = "id") Long id){

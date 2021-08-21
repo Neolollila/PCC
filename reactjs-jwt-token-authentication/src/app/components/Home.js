@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import AppNavbar from './AppNavbar';
-import { Link } from 'react-router-dom';
 import { Button, Container } from 'reactstrap';
-import { Alert } from "react-bootstrap"
+import { Alert } from 'reactstrap';
+import CarouselReact from "../collection elements/Carousel";
 
 class Home extends Component {
 
@@ -19,10 +19,14 @@ class Home extends Component {
         <AppNavbar/>
         <Container fluid>
           <div style={{marginTop:"20px"}}>
-            <Alert variant="primary">
-              <h2>Reactjs JWT Authentication Application</h2>
-              <Button color="success"><Link to="/signin"><span style={{color:"white"}}>Login</span></Link></Button>
+            <Alert color="primary">
+              Last added items:
             </Alert>
+
+            <Alert color="info">
+              Collections with the largest number of items:
+            </Alert>
+
           </div>
         </Container>
       </div>

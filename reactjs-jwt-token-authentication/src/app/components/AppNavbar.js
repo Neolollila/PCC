@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component,  } from 'react';
 import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavbarText, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
@@ -6,7 +6,13 @@ import { withRouter } from 'react-router-dom';
 
 import AuthenticationService from '../services/AuthenticationService';
 
+import ThemeSwitch from '../style/ThemeSwitch';
+
+
 class AppNavbar extends Component {
+
+
+
   constructor(props) {
     super(props);
     this.state = {isOpen: false};
@@ -17,12 +23,20 @@ class AppNavbar extends Component {
       showPM: false,
       showAdmin: false,
       username: undefined,
-      login: false
+      login: false,
+      userid: 0
     };
+
+
   }
+
+
+
 
   componentDidMount() {
     const user = AuthenticationService.getCurrentUser();
+
+
 
     if (user) {
       const roles = [];
@@ -30,16 +44,20 @@ class AppNavbar extends Component {
       user.authorities.forEach(authority => {
         roles.push(authority.authority)
       });
-  
+      console.log(user);
       this.setState({
         showUser: true,
         showPM: roles.includes("ROLE_PM") || roles.includes("ROLE_ADMIN"),
         showAdmin: roles.includes("ROLE_ADMIN"),
         login: true,
-        username: user.username
+        username: user.username,
+        userid: "/profiles/"+user.id
       });
     }
   }
+
+
+
 
   signOut = () => {
     AuthenticationService.signOut();
@@ -47,19 +65,26 @@ class AppNavbar extends Component {
     window.location.reload();
   }
 
+
+
   toggle() {
+
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen: !this.state.isOpen,
+
     });
   }
 
+
   render() {
-    return <Navbar color="dark" dark expand="md" >
-      <NavbarBrand tag={Link} to="/home">Mandrik.phys</NavbarBrand>
+    return (<Navbar color="dark" dark expand="md" >
+
+          <NavbarBrand tag={Link} to="/home">Mandrik.phys</NavbarBrand>
       <Nav className="mr-auto">
         <NavLink href="/home">Home</NavLink>
-        {this.state.showUser && <NavLink href="/user">User</NavLink>}
+        {/*{this.state.showUser && <NavLink href="/createcollection">Create Collection</NavLink>}*/}
         {this.state.showAdmin && <NavLink href="/admin">Admin</NavLink>}
+
       </Nav>
       <NavbarToggler onClick={this.toggle}/>
       <Collapse isOpen={this.state.isOpen} navbar>
@@ -68,7 +93,7 @@ class AppNavbar extends Component {
             <Nav className="ml-auto" navbar>
               <NavItem>
                   <NavbarText>
-                    Signed in as: <a href="/profile">{this.state.username}</a>
+                    Signed in as: <a href="/profiles/0">{this.state.username}</a>
                   </NavbarText>
               </NavItem>
               <NavItem>
@@ -78,16 +103,19 @@ class AppNavbar extends Component {
           ) : (
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/signin">Login</NavLink>
+                <NavLink href="/signin" className="float-right">Login</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/signup">SignUp</NavLink>
+                <NavLink href="/signup" className="float-right">SignUp</NavLink>
               </NavItem>
             </Nav>
           )
         }
+        <ThemeSwitch/>
       </Collapse>
-    </Navbar>;
+
+    </Navbar>
+    );
   }
 }
 
