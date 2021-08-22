@@ -25,6 +25,9 @@ public class UserPrinciple implements UserDetails {
     @Getter
     private String email;
 
+    @Getter
+    private User user;
+
     @JsonIgnore
     @Getter(onMethod = @__(@Override))
     private String password;
@@ -32,13 +35,14 @@ public class UserPrinciple implements UserDetails {
     @Getter(onMethod = @__(@Override))
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserPrinciple(Long id, String username, String email, String password, 
-			    		Collection<? extends GrantedAuthority> authorities) {
+    public UserPrinciple(Long id, String username, String email, String password,
+			    		Collection<? extends GrantedAuthority> authorities, User user) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
+        this.user = user;
     }
 
     public static UserPrinciple build(User user) {
@@ -51,7 +55,8 @@ public class UserPrinciple implements UserDetails {
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
-                authorities
+                authorities,
+                user
         );
     }
 

@@ -37,6 +37,13 @@ class BackendService {
     return await axios.delete(`/api/collection/delete/${id}`);
   }
 
+  async getCollectionById(id){
+    return await axios.get(`/api/collection/edit/${id}`);
+  }
+
+  async editCollection(id,data) {
+    return await axios.post(`/api/collection/sendEdit/${id}`,data);
+  }
   // async removeUserById(id) {
   //   return await axios.delete(`/user/${id}`);
   // }

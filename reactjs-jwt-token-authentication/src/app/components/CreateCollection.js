@@ -5,6 +5,7 @@ import AppNavbar from "./AppNavbar";
 
 import BackendService from "../services/BackendService";
 import FormCollection from "../collection elements/Form";
+import FormEditCollection from "../collection elements/FormEdit";
 
 class CreateCollectionPage extends Component {
 
@@ -44,3 +45,4 @@ class CreateCollectionPage extends Component {
 }
 
 export default CreateCollectionPage;
+

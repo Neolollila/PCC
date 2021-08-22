@@ -35,11 +35,9 @@ class CollectionCard extends Component{
                         <div className="d-flex justify-content-between align-items-center">
                             <div className="btn-group">
                                 <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                                <Link to="/editCollection"><button type="button" className="btn btn-sm btn-outline-secondary">Edit</button></Link>
+                                <Link to={`/editCollection/${this.props.collection.id}`}><button type="button" className="btn btn-sm btn-outline-secondary">Edit</button></Link>
                                 <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => removeCollectionById(this.props.collection.id)}>Delete</button>
                             </div>
-
-                            <small className="text-muted">9 mins</small>
                         </div>
                     </div>
                 </div>

@@ -45,6 +45,12 @@ public class Collection {
     @JoinColumn(name = "id_theme")
     private Theme theme;
 
+    @Getter
+    @Setter
+    @ManyToOne
+    @JoinColumn(name = "id_user")
+    private User user;
+
     public Collection() {};
 
 

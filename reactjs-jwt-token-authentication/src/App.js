@@ -7,6 +7,7 @@ import SignUp from './app/components/SignUp';
 import AdminPage from './app/components/AdminPage';
 import Login from './app/components/Login';
 import CreateCollection from "./app/components/CreateCollection";
+import EditCollectionn from './app/components/EditCollectionn';
 
 
 
@@ -22,7 +23,8 @@ class App extends Component {
           <Route path='/createcollection' exact={true} component={CreateCollection}/>
           <Route path='/admin' exact={true} component={AdminPage}/>
           <Route path='/signin' exact={true} component={Login}/>
-          <Route path='/signup' exact={true} component={SignUp}/>  
+          <Route path='/signup' exact={true} component={SignUp}/>
+          <Route path='/editCollection/:id' exact={true} component={EditCollectionn}/>
         </Switch>
       </Router>
     )
